@@ -61,6 +61,16 @@ if [ "$PROMETHEUS" = "true" ]; then
   template $PLUGIN_TEMPLATES/prometheus.yaml.j2 $AGENT_PLUGINS/prometheus.yaml
 fi
 
+if [ "$HOST" = "true" ]; then
+  template $PLUGIN_TEMPLATES/cpu.yaml.j2 $AGENT_PLUGINS/cpu.yaml
+  template $PLUGIN_TEMPLATES/disk.yaml.j2 $AGENT_PLUGINS/disk.yaml
+  template $PLUGIN_TEMPLATES/ib_network.yaml.j2 $AGENT_PLUGINS/ib_network.yaml
+  template $PLUGIN_TEMPLATES/load.yaml.j2 $AGENT_PLUGINS/load.yaml
+  template $PLUGIN_TEMPLATES/memory.yaml.j2 $AGENT_PLUGINS/memory.yaml
+  template $PLUGIN_TEMPLATES/network.yaml.j2 $AGENT_PLUGINS/network.yaml
+  template $PLUGIN_TEMPLATES/process.yaml.j2 $AGENT_PLUGINS/process.yaml
+fi
+
 # apply user templates
 for f in $USER_PLUGINS/*.yaml.j2; do
   if [ -e "$f" ]; then

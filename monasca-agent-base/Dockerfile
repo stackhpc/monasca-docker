@@ -11,6 +11,7 @@ ARG CONSTRAINTS_BRANCH=master
 # `docker build`
 ARG REBUILD=1
 
+RUN sed -i "s/cdn/4/g" /etc/apk/repositories
 ENV CONFIG_TEMPLATE=true \
   KEYSTONE_DEFAULTS_ENABLED=true \
   MONASCA_URL=http://monasca:8070/v2.0 \
